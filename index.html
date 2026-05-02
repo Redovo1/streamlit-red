@@ -1,543 +1,286 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="保护环境，从我做起 — 一个纯HTML环保主题页面">
-    <title>🌍 绿家园 | 保护环境，从我做起</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&amp;display=swap');
-        
-        :root {
-            --tw-color-primary: #10b981;
-        }
-        
-        * {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 150ms;
-        }
-        
-        body {
-            font-family: 'Noto Sans SC', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #22d3ee 100%);
-            animation: gradientShift 15s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 3px;
-            bottom: -2px;
-            left: 0;
-            background-color: #10b981;
-        }
-        
-        .nav-link:hover:after {
-            width: 100%;
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 25px 25px 0 -10px rgb(16 185 129);
-        }
-        
-        .earth {
-            animation: rotateEarth 20s linear infinite;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiet Notes</title>
+  <meta name="description" content="A small personal blog about travel, books, coffee, and everyday observations." />
+  <style>
+    :root {
+      --bg: #f7f3ee;
+      --paper: #fffdf9;
+      --ink: #2b2723;
+      --muted: #756d64;
+      --line: #e6ddd1;
+      --accent: #8b5e3c;
+      --accent-soft: #ead8c5;
+      --shadow: 0 18px 55px rgba(50, 38, 25, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(234, 216, 197, .75), transparent 34rem),
+        linear-gradient(180deg, var(--bg), #efe8df 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(1060px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 38px 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand strong {
+      font-size: 24px;
+      letter-spacing: .04em;
+      font-weight: 700;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      color: var(--muted);
+      font: 14px/1.2 Arial, sans-serif;
+      letter-spacing: .04em;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .hero {
+      margin-top: 18px;
+      padding: 56px;
+      background: rgba(255, 253, 249, .86);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .kicker {
+      font: 12px/1.2 Arial, sans-serif;
+      letter-spacing: .18em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.5fr .9fr;
+      gap: 28px;
+      margin: 34px 0 54px;
+    }
+
+    .card, .side-card {
+      background: rgba(255, 253, 249, .82);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 12px 35px rgba(50, 38, 25, .07);
+    }
+
+    .post {
+      padding: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .post:last-child { border-bottom: 0; }
+
+    .meta {
+      font: 12px/1.2 Arial, sans-serif;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+
+    .post p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    aside {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .side-card { padding: 26px; }
+
+    .side-card h3 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      letter-spacing: -.01em;
+    }
+
+    .side-card p, .side-card li {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li + li { margin-top: 8px; }
+
+    .quote {
+      padding: 26px;
+      background: var(--accent-soft);
+      border-radius: 22px;
+      color: #4a3526;
+      font-size: 20px;
+      line-height: 1.45;
+    }
+
+    footer {
+      padding: 22px 0 46px;
+      color: var(--muted);
+      font: 13px/1.6 Arial, sans-serif;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      header { align-items: flex-start; flex-direction: column; }
+      nav { flex-wrap: wrap; }
+      .hero { padding: 34px 26px; border-radius: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      h2 { font-size: 25px; }
+    }
+  </style>
 </head>
-<body class="bg-emerald-50 text-slate-800">
-
-    <!-- 导航栏 -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-3xl shadow-inner">🌍</div>
-                <h1 class="text-3xl font-bold tracking-tighter text-emerald-600">绿家园</h1>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-9 text-lg font-medium">
-                <a href="#problems" class="nav-link text-slate-700 hover:text-emerald-600">环境问题</a>
-                <a href="#actions" class="nav-link text-slate-700 hover:text-emerald-600">我们能做什么</a>
-                <a href="#facts" class="nav-link text-slate-700 hover:text-emerald-600">数据说话</a>
-                <a href="#pledge" class="nav-link text-slate-700 hover:text-emerald-600">我的承诺</a>
-            </div>
-            
-            <div class="flex items-center gap-4">
-                <button onclick="toggleDarkMode()" 
-                        class="w-10 h-10 flex items-center justify-center text-2xl rounded-2xl hover:bg-emerald-100">
-                    🌓
-                </button>
-                <button onclick="makeGlobalPledge()" 
-                        class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-3xl flex items-center gap-2 shadow-lg shadow-emerald-300">
-                    <span>立即行动</span>
-                    <span class="text-xl">🌱</span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 英雄区 -->
-    <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-md text-white text-sm font-medium px-6 py-3 rounded-3xl">
-                    <span class="relative flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                    </span>
-                    今天已有 847,291 人加入保护行动
-                </div>
-                
-                <h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter">
-                    保护环境<br>从我做起
-                </h1>
-                
-                <p class="text-2xl md:text-3xl text-white/90 max-w-lg">
-                    每一滴水、每一棵树、每一个小行动，<br>都在塑造我们共同的未来。
-                </p>
-                
-                <div class="flex flex-wrap gap-4">
-                    <button onclick="makeGlobalPledge()" 
-                            class="bg-white text-emerald-600 hover:bg-emerald-50 font-bold text-xl px-10 py-6 rounded-3xl flex items-center gap-3 shadow-2xl">
-                        🌱 我要守护地球
-                    </button>
-                    
-                    <button onclick="document.getElementById('actions').scrollIntoView({ behavior: 'smooth' })" 
-                            class="border-2 border-white hover:bg-white/10 font-semibold text-xl px-10 py-6 rounded-3xl flex items-center gap-3">
-                        了解更多行动
-                        <span class="text-3xl">→</span>
-                    </button>
-                </div>
-                
-                <div class="flex items-center gap-8 text-sm pt-6">
-                    <div class="flex -space-x-4">
-                        <div class="w-8 h-8 bg-white/30 backdrop-blur rounded-2xl flex items-center justify-center text-lg">🌳</div>
-                        <div class="w-8 h-8 bg-white/30 backdrop-blur rounded-2xl flex items-center justify-center text-lg">🌊</div>
-                        <div class="w-8 h-8 bg-white/30 backdrop-blur rounded-2xl flex items-center justify-center text-lg">🐢</div>
-                    </div>
-                    <div>
-                        <p class="font-medium">联合国环境规划署认证</p>
-                        <p class="text-white/70">2026 全球绿色行动计划</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 右侧视觉元素 -->
-            <div class="hidden md:flex justify-center relative">
-                <div class="relative">
-                    <!-- 地球 -->
-                    <div class="text-[280px] earth">🌍</div>
-                    <!-- 漂浮元素 -->
-                    <div class="absolute top-12 -left-8 text-7xl animate-bounce" style="animation-delay: 0.5s">🌱</div>
-                    <div class="absolute bottom-20 right-6 text-6xl animate-bounce" style="animation-delay: 1.2s">🐝</div>
-                    <div class="absolute top-1/3 right-12 text-5xl animate-bounce" style="animation-delay: 0.8s">🌊</div>
-                    <div class="absolute -bottom-6 left-1/4 text-6xl animate-pulse">🌳</div>
-                    
-                    <!-- 标签 -->
-                    <div class="absolute -top-4 -right-4 bg-white text-emerald-700 text-sm font-bold px-6 py-2 rounded-3xl shadow-xl flex items-center gap-2">
-                        <span class="text-2xl">📉</span>
-                        CO₂ 已减少 12%
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 向下滚动提示 -->
-        <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-white/70 text-sm">
-            <div>向下滚动探索</div>
-            <div class="mt-2 animate-bounce text-4xl">↓</div>
-        </div>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="#">
+        <strong>Quiet Notes</strong>
+        <span>Personal Blog</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#latest">Latest</a>
+        <a href="#reading">Reading</a>
+        <a href="#about">About</a>
+      </nav>
     </header>
 
-    <!-- 环境问题 -->
-    <section id="problems" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-emerald-600 font-semibold text-lg tracking-widest">⚠️ 危机时刻</span>
-                <h2 class="text-5xl font-bold mt-3">地球正在向我们求救</h2>
-                <p class="text-xl text-slate-600 mt-4 max-w-2xl mx-auto">我们只有一次地球，不能再等了</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- 卡片1 -->
-                <div class="card-hover bg-emerald-50 p-8 rounded-3xl border border-emerald-100">
-                    <div class="text-6xl mb-6">🌡️</div>
-                    <h3 class="text-2xl font-bold mb-3">气候变暖</h3>
-                    <p class="text-slate-600 leading-relaxed">过去50年全球平均气温上升1.2℃，极端天气事件增加3倍。</p>
-                    <div class="mt-8 text-xs uppercase tracking-widest font-medium text-red-500">每年新增 3600 万吨温室气体</div>
-                </div>
-                
-                <!-- 卡片2 -->
-                <div class="card-hover bg-emerald-50 p-8 rounded-3xl border border-emerald-100">
-                    <div class="text-6xl mb-6">🪸</div>
-                    <h3 class="text-2xl font-bold mb-3">海洋污染</h3>
-                    <p class="text-slate-600 leading-relaxed">每年有800万吨塑料进入海洋，相当于每分钟一卡车垃圾。</p>
-                    <div class="mt-8 text-xs uppercase tracking-widest font-medium text-blue-500">2050年 海洋塑料将超过鱼类</div>
-                </div>
-                
-                <!-- 卡片3 -->
-                <div class="card-hover bg-emerald-50 p-8 rounded-3xl border border-emerald-100">
-                    <div class="text-6xl mb-6">🌲</div>
-                    <h3 class="text-2xl font-bold mb-3">森林消失</h3>
-                    <p class="text-slate-600 leading-relaxed">全球每年失去约1000万公顷森林，相当于一个冰岛的面积。</p>
-                    <div class="mt-8 text-xs uppercase tracking-widest font-medium text-amber-500">每秒失去2个足球场大小的森林</div>
-                </div>
-                
-                <!-- 卡片4 -->
-                <div class="card-hover bg-emerald-50 p-8 rounded-3xl border border-emerald-100">
-                    <div class="text-6xl mb-6">🦋</div>
-                    <h3 class="text-2xl font-bold mb-3">生物多样性丧失</h3>
-                    <p class="text-slate-600 leading-relaxed">100万种生物正面临灭绝，物种灭绝速度是自然速度的1000倍。</p>
-                    <div class="mt-8 text-xs uppercase tracking-widest font-medium text-purple-500">每一天都有物种永远消失</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main>
+      <section class="hero">
+        <div class="kicker">Field notes from ordinary days</div>
+        <h1>Small observations, slow mornings, and places worth remembering.</h1>
+        <p class="intro">
+          This is a quiet personal space for short essays, travel sketches, reading notes,
+          and the kind of thoughts that arrive between one cup of coffee and the next.
+        </p>
+      </section>
 
-    <!-- 我们能做什么 -->
-    <section id="actions" class="py-24 bg-emerald-950 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-16 items-center">
-                <div class="md:col-span-5">
-                    <span class="px-5 py-2 bg-emerald-900 rounded-3xl text-emerald-300 text-sm font-medium">💡 小行动 × 大影响</span>
-                    <h2 class="text-5xl font-bold mt-6 leading-none">每个人都能成为<br>地球守护者</h2>
-                    <p class="mt-8 text-emerald-100 text-2xl">从今天开始，选择绿色生活方式。</p>
-                    <div class="mt-12 flex items-center gap-4">
-                        <div class="h-2 flex-1 bg-emerald-800 rounded-3xl relative">
-                            <div class="absolute left-0 top-0 h-2 bg-emerald-400 rounded-3xl w-3/4"></div>
-                        </div>
-                        <span class="font-medium whitespace-nowrap">已完成全球目标的 68%</span>
-                    </div>
-                </div>
-                
-                <div class="md:col-span-7 grid sm:grid-cols-2 gap-6">
-                    <div onclick="completeAction(this)" class="card-hover cursor-pointer bg-white/10 hover:bg-white/20 p-8 rounded-3xl flex gap-6 items-start group">
-                        <div class="text-5xl">💡</div>
-                        <div class="flex-1">
-                            <h4 class="text-2xl font-semibold">节约能源</h4>
-                            <p class="text-emerald-100 mt-2">随手关灯、用节能电器，每年可减少家庭碳排放20%。</p>
-                            <div class="mt-6 text-xs text-emerald-300 group-active:text-emerald-400">点击完成今日目标 →</div>
-                        </div>
-                    </div>
-                    
-                    <div onclick="completeAction(this)" class="card-hover cursor-pointer bg-white/10 hover:bg-white/20 p-8 rounded-3xl flex gap-6 items-start group">
-                        <div class="text-5xl">🛍️</div>
-                        <div class="flex-1">
-                            <h4 class="text-2xl font-semibold">拒绝一次性塑料</h4>
-                            <p class="text-emerald-100 mt-2">带自己的购物袋、水杯，减少90%的塑料垃圾。</p>
-                            <div class="mt-6 text-xs text-emerald-300 group-active:text-emerald-400">点击完成今日目标 →</div>
-                        </div>
-                    </div>
-                    
-                    <div onclick="completeAction(this)" class="card-hover cursor-pointer bg-white/10 hover:bg-white/20 p-8 rounded-3xl flex gap-6 items-start group">
-                        <div class="text-5xl">♻️</div>
-                        <div class="flex-1">
-                            <h4 class="text-2xl font-semibold">垃圾分类回收</h4>
-                            <p class="text-emerald-100 mt-2">正确分类让可回收物重新进入生产循环。</p>
-                            <div class="mt-6 text-xs text-emerald-300 group-active:text-emerald-400">点击完成今日目标 →</div>
-                        </div>
-                    </div>
-                    
-                    <div onclick="completeAction(this)" class="card-hover cursor-pointer bg-white/10 hover:bg-white/20 p-8 rounded-3xl flex gap-6 items-start group">
-                        <div class="text-5xl">🚲</div>
-                        <div class="flex-1">
-                            <h4 class="text-2xl font-semibold">绿色出行</h4>
-                            <p class="text-emerald-100 mt-2">多走路、多骑车、少开车，减少尾气排放。</p>
-                            <div class="mt-6 text-xs text-emerald-300 group-active:text-emerald-400">点击完成今日目标 →</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <section class="grid" id="latest">
+        <div class="card">
+          <article class="post">
+            <div class="meta">May 03, 2026 · Travel</div>
+            <h2>A street that smelled like rain</h2>
+            <p>
+              I walked without a destination and found a narrow lane lined with old balconies,
+              quiet plants, and windows that seemed to hold entire afternoons inside them.
+            </p>
+          </article>
 
-    <!-- 数据说话 -->
-    <section id="facts" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold">用数字说话</h2>
-                <p class="text-slate-600 mt-4">这些数字正在改变 —— 取决于你今天的行动</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-7xl font-bold text-emerald-600">1.5°C</div>
-                    <p class="text-xl mt-4 font-medium">我们还能承受的升温上限</p>
-                    <p class="text-slate-500 text-sm mt-2">当前已升温 1.2°C</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-7xl font-bold text-emerald-600">2030</div>
-                    <p class="text-xl mt-4 font-medium">联合国2030可持续发展议程</p>
-                    <p class="text-slate-500 text-sm mt-2">留给我们的最后窗口期</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-7xl font-bold text-emerald-600">8亿</div>
-                    <p class="text-xl mt-4 font-medium">人可通过植树获得清洁空气</p>
-                    <p class="text-slate-500 text-sm mt-2">每人每年种10棵树即可</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-7xl font-bold text-emerald-600">100%</div>
-                    <p class="text-xl mt-4 font-medium">可再生能源是未来方向</p>
-                    <p class="text-slate-500 text-sm mt-2">中国已领跑全球</p>
-                </div>
-            </div>
-        </div>
-    </section>
+          <article class="post">
+            <div class="meta">April 29, 2026 · Notes</div>
+            <h2>The habit of keeping simple things simple</h2>
+            <p>
+              There is a special kind of relief in choosing fewer tools, fewer tabs, fewer promises,
+              and letting one good notebook do the work of five complicated systems.
+            </p>
+          </article>
 
-    <!-- 我的承诺 -->
-    <section id="pledge" class="py-24 bg-gradient-to-br from-emerald-100 to-teal-100">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="bg-white rounded-3xl shadow-2xl p-12 md:p-16">
-                <h2 class="text-center text-5xl font-bold mb-4">今天，你愿意做出承诺吗？</h2>
-                <p class="text-center text-slate-600 text-xl mb-12">选择下方行动，加入全球数百万人的环保队伍</p>
-                
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4" id="pledge-list">
-                    <label onclick="this.classList.toggle('!bg-emerald-100')" class="flex items-center gap-4 bg-slate-50 hover:bg-emerald-50 p-5 rounded-2xl cursor-pointer">
-                        <input type="checkbox" class="w-6 h-6 accent-emerald-600">
-                        <span class="font-medium">本周减少一次性塑料使用</span>
-                    </label>
-                    <label onclick="this.classList.toggle('!bg-emerald-100')" class="flex items-center gap-4 bg-slate-50 hover:bg-emerald-50 p-5 rounded-2xl cursor-pointer">
-                        <input type="checkbox" class="w-6 h-6 accent-emerald-600">
-                        <span class="font-medium">每天关灯30分钟</span>
-                    </label>
-                    <label onclick="this.classList.toggle('!bg-emerald-100')" class="flex items-center gap-4 bg-slate-50 hover:bg-emerald-50 p-5 rounded-2xl cursor-pointer">
-                        <input type="checkbox" class="w-6 h-6 accent-emerald-600">
-                        <span class="font-medium">种植或领养一棵植物</span>
-                    </label>
-                    <label onclick="this.classList.toggle('!bg-emerald-100')" class="flex items-center gap-4 bg-slate-50 hover:bg-emerald-50 p-5 rounded-2xl cursor-pointer">
-                        <input type="checkbox" class="w-6 h-6 accent-emerald-600">
-                        <span class="font-medium">垃圾严格分类</span>
-                    </label>
-                    <label onclick="this.classList.toggle('!bg-emerald-100')" class="flex items-center gap-4 bg-slate-50 hover:bg-emerald-50 p-5 rounded-2xl cursor-pointer">
-                        <input type="checkbox" class="w-6 h-6 accent-emerald-600">
-                        <span class="font-medium">使用公共交通或骑行</span>
-                    </label>
-                    <label onclick="this.classList.toggle('!bg-emerald-100')" class="flex items-center gap-4 bg-slate-50 hover:bg-emerald-50 p-5 rounded-2xl cursor-pointer">
-                        <input type="checkbox" class="w-6 h-6 accent-emerald-600">
-                        <span class="font-medium">向家人朋友传播环保知识</span>
-                    </label>
-                </div>
-                
-                <div class="mt-12 text-center">
-                    <button onclick="submitPledge()" 
-                            class="bg-emerald-600 text-white text-2xl px-16 py-6 rounded-3xl hover:shadow-2xl hover:shadow-emerald-500/50 font-bold">
-                        提交我的环保承诺 🌍
-                    </button>
-                    <p id="pledge-result" class="mt-8 text-emerald-600 font-medium text-xl hidden">🎉 恭喜！你已成功加入全球守护者行列！</p>
-                </div>
-            </div>
+          <article class="post" id="reading">
+            <div class="meta">April 21, 2026 · Reading</div>
+            <h2>Three pages before sleep</h2>
+            <p>
+              Some books are not meant to be rushed. They sit on the bedside table like small lamps,
+              asking only for a little attention and a little patience each night.
+            </p>
+          </article>
         </div>
-    </section>
 
-    <!-- 页脚 -->
-    <footer class="bg-emerald-900 text-emerald-100 py-16">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-            <div>
-                <div class="flex items-center gap-3 text-white">
-                    <span class="text-4xl">🌍</span>
-                    <span class="text-3xl font-bold">绿家园</span>
-                </div>
-                <p class="mt-6 text-emerald-300">一个纯HTML打造的环保主题页面。<br>保护环境，人人有责。</p>
-                <p class="text-xs mt-12 opacity-60">© 2026 仅供演示 · 可随意复制修改</p>
-            </div>
-            
-            <div class="grid grid-cols-3 gap-y-8">
-                <div>
-                    <h5 class="font-medium mb-4 text-white">关于我们</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li>我们的使命</li>
-                        <li>环保故事</li>
-                        <li>加入我们</li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-medium mb-4 text-white">快速行动</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li>节约能源</li>
-                        <li>植树计划</li>
-                        <li>垃圾分类</li>
-                        <li>绿色生活</li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-medium mb-4 text-white">联系方式</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li>WeChat 公众号</li>
-                        <li>抖音 小红书</li>
-                        <li>邮箱：hello@greenhome.cn</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="flex flex-col justify-between">
-                <div>
-                    <p class="text-2xl font-light">“我们不是地球的继承者，<br>而是地球的借用者。”</p>
-                    <p class="text-xs mt-4 text-emerald-400">—— 世界环境日格言</p>
-                </div>
-                
-                <div class="text-xs opacity-50 flex items-center gap-6">
-                    <div>用爱守护地球</div>
-                    <div class="flex-1 h-px bg-emerald-700"></div>
-                    <div>Made with ❤️ for our planet</div>
-                </div>
-            </div>
-        </div>
+        <aside>
+          <section class="side-card" id="about">
+            <h3>About this place</h3>
+            <p>
+              A minimal blog for everyday notes: quiet streets, warm drinks, books, weather,
+              and the slow process of noticing what usually passes by unnoticed.
+            </p>
+          </section>
+
+          <section class="side-card">
+            <h3>Currently</h3>
+            <ul>
+              <li>Reading essays about cities and memory.</li>
+              <li>Learning to take better walks.</li>
+              <li>Collecting small cafés with good window seats.</li>
+            </ul>
+          </section>
+
+          <section class="quote">
+            “A day becomes clearer when you write down one honest detail from it.”
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Quiet Notes. Written slowly, updated occasionally.
     </footer>
-
-    <script>
-        /**
-         * 尾部 Tailwind 初始化
-         */
-        function initializeTailwind() {
-            return {
-                config(userConfig = {}) {
-                    return {
-                        content: [],
-                        theme: {
-                            extend: {
-                                colors: {
-                                    primary: '#10b981'
-                                }
-                            }
-                        },
-                        plugins: [],
-                        ...userConfig,
-                    }
-                },
-                theme: {
-                    extend: {},
-                },
-            }
-        }
-        
-        /**
-         * 页面加载完成后初始化
-         */
-        function initialize() {
-            // Tailwind CDN 配置
-            const config = initializeTailwind().config()
-            document.documentElement.setAttribute('data-tailwind-config', JSON.stringify(config))
-            
-            console.log('%c🌍 绿家园纯HTML页面已成功加载！', 'color:#10b981; font-size:13px; font-weight:bold')
-            console.log('主题：保护环境 | 单文件 | 可直接保存为 .html 使用')
-            
-            // 随机显示已参与人数
-            setInterval(() => {
-                const countEl = document.querySelector('.hero-bg .inline-flex')
-                if (countEl) {
-                    let num = parseInt(countEl.textContent.match(/\d+/)[0].replace(',', ''))
-                    num += Math.floor(Math.random() * 800) + 200
-                    countEl.innerHTML = `
-                        <span class="relative flex h-3 w-3">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                        </span>
-                        今天已有 ${num.toLocaleString('zh-CN')} 人加入保护行动
-                    `
-                }
-            }, 4500)
-        }
-        
-        /**
-         * 提交承诺
-         */
-        function submitPledge() {
-            const result = document.getElementById('pledge-result')
-            result.classList.remove('hidden')
-            result.style.animation = 'pulse 1s'
-            
-            // 烟花效果模拟
-            setTimeout(() => {
-                result.innerHTML = `🎉 恭喜！你已成功加入 <strong class="text-3xl">全球 1,284,672 名</strong> 守护者行列！`
-            }, 800)
-            
-            // 3秒后自动滚动到顶部
-            setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-            }, 2800)
-        }
-        
-        /**
-         * 完成单个行动
-         */
-        function completeAction(el) {
-            el.style.transform = 'scale(0.95)'
-            setTimeout(() => {
-                el.style.transform = 'scale(1)'
-                const emoji = el.querySelector('.text-5xl')
-                if (emoji) emoji.textContent = '✅'
-            }, 180)
-            
-            // 轻微提示
-            if (!el.dataset.done) {
-                el.dataset.done = 'true'
-                const toast = document.createElement('div')
-                toast.style.cssText = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#10b981; color:white; padding:16px 24px; border-radius:9999px; box-shadow:0 10px 15px -3px rgb(16 185 129); font-weight:600;'
-                toast.textContent = '🌟 行动已记录！地球谢谢你！'
-                document.body.appendChild(toast)
-                setTimeout(() => toast.remove(), 2200)
-            }
-        }
-        
-        /**
-         * 全局承诺按钮
-         */
-        function makeGlobalPledge() {
-            let count = localStorage.getItem('globalPledge') || 1284672
-            count = parseInt(count) + Math.floor(Math.random() * 1200) + 300
-            localStorage.setItem('globalPledge', count)
-            
-            const message = document.createElement('div')
-            message.style.cssText = 'position:fixed; top:30px; right:30px; background:white; border:4px solid #10b981; color:#052e16; padding:20px 28px; border-radius:30px; box-shadow:30px 30px 0 -10px #10b981; font-size:22px; font-weight:bold; z-index:9999;'
-            message.innerHTML = `🌍 感谢你！<br>全球守护者人数已达到 <span class="text-3xl">${count.toLocaleString('zh-CN')}</span>`
-            document.body.appendChild(message)
-            
-            setTimeout(() => {
-                message.style.transform = 'translateY(-100px)'
-                message.style.opacity = '0'
-                setTimeout(() => message.remove(), 600)
-            }, 3200)
-            
-            // 滚动到承诺区
-            document.getElementById('pledge').scrollIntoView({ behavior: 'smooth' })
-        }
-        
-        /**
-         * 切换暗黑模式（趣味功能）
-         */
-        function toggleDarkMode() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark')
-                document.body.style.background = '#ecfdf5'
-            } else {
-                document.documentElement.classList.add('dark')
-                document.body.style.background = '#052e16'
-            }
-        }
-        
-        // 启动页面
-        window.onload = initialize
-    </script>
+  </div>
 </body>
 </html>
